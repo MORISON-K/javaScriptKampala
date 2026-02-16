@@ -37,7 +37,7 @@ export default function Join() {
                {[
                    { icon: Twitter, label: 'Twitter / X', link: 'https://x.com/JsKampala' },
                    { icon: Linkedin, label: 'LinkedIn', link: 'https://www.linkedin.com/company/javascript-community-uganda' },
-                   { icon: Github, label: 'GitHub Org', link: 'https://github.com/kampala-js' }
+                   { icon: Github, label: 'GitHub Org', link: 'https://github.com/javaScriptKampala' }
                ].map((item, i) => (
                    <a key={i} href={item.link} className="flex items-center justify-between p-8 bg-[#111] hover:bg-js-yellow hover:text-black transition-colors group">
                         <div className="flex items-center gap-4">
