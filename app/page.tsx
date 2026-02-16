@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import Link from 'next/link';
 import {
   ArrowRight, Calendar, Zap, Github, CheckCircle, Ticket, MapPin,
@@ -10,77 +10,6 @@ import {
 import { Button, Section, Card, Heading, Badge } from '../components/UI';
 import { EVENTS, BLOG_POSTS, SPONSORS, PROJECTS } from '../data';
 
-// const HeroVideo = () => {
-//   const videoRef = useRef<HTMLVideoElement | null>(null);
-//   const [isPlaying, setIsPlaying] = useState(false);
-
-//   const togglePlayback = () => {
-//     const video = videoRef.current;
-//     if (!video) return;
-//     if (video.paused) {
-//       video.play();
-//     } else {
-//       video.pause();
-//     }
-//   };
-
-//   return (
-//     <div className="w-full h-full bg-[#050505] relative flex flex-col overflow-hidden border-l border-gray-800">
-//       <div className="h-16 border-b border-gray-800 bg-[#0a0a0a] flex items-center justify-between px-6 relative z-20">
-//         <div className="flex flex-col">
-//           <span className="text-[10px] font-mono text-gray-500 uppercase tracking-widest mb-1">Spotlight</span>
-//           <div className="text-xs font-mono uppercase tracking-widest text-js-yellow">Community Reel</div>
-//         </div>
-//         <div className="text-right hidden sm:block">
-//           <div className="text-[10px] font-mono text-gray-500 uppercase tracking-widest mb-1">Runtime</div>
-//           <div className="text-js-yellow font-bold font-mono">02:34</div>
-//         </div>
-//       </div>
-
-//       <div className="grow p-3 sm:p-4 flex items-center justify-center relative bg-[#080808]">
-//         <div className="absolute inset-0 z-30 flex items-stretch sm:items-center justify-center bg-black/70 backdrop-blur-sm p-3 sm:p-6 lg:p-10">
-//           <div className="w-full h-full sm:h-auto max-w-2xl lg:max-w-none lg:w-[94%] border border-gray-800 bg-[#0b0b0b] shadow-[0_0_60px_rgba(247,223,30,0.15)] flex flex-col relative">
-//             <div className="relative flex-1 min-h-[360px] sm:flex-none sm:aspect-video sm:min-h-[280px] lg:min-h-[360px] bg-[#111] overflow-hidden">
-//               <video
-//                 ref={videoRef}
-//                 className="absolute inset-0 w-full h-full object-cover"
-//                 src="/test-video.mp4"
-//                 preload="metadata"
-//                 playsInline
-//                 muted
-//                 onPlay={() => setIsPlaying(true)}
-//                 onPause={() => setIsPlaying(false)}
-//                 onClick={togglePlayback}
-//               />
-//               <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-transparent to-black/80"></div>
-//               {!isPlaying && (
-//                 <button
-//                   className="absolute inset-0 flex flex-col items-center justify-center group"
-//                   aria-label="Play community video"
-//                   onClick={togglePlayback}
-//                 >
-//                   <div className="w-20 h-20 sm:w-24 sm:h-24 bg-js-yellow rounded-full flex items-center justify-center shadow-[0_0_40px_rgba(247,223,30,0.35)] group-hover:scale-110 transition-transform duration-300">
-//                     <Play size={36} className="text-black ml-2 fill-black sm:size-[42px]" />
-//                   </div>
-//                   <div className="mt-4 sm:mt-6 text-js-yellow font-mono text-[10px] sm:text-xs uppercase tracking-[0.25em] sm:tracking-[0.35em] text-center px-4">
-//                     Watch The Network
-//                   </div>
-//                 </button>
-//               )}
-//             </div>
-//             <div className="absolute left-0 right-0 bottom-0 px-4 sm:px-6 py-4 sm:py-5 border-t border-gray-800 flex items-center justify-between bg-black/70 backdrop-blur-sm">
-//               <div>
-//                 <div className="text-white font-black uppercase tracking-widest text-xs sm:text-sm">Kampala JS</div>
-//                 <div className="text-gray-400 text-[10px] sm:text-xs font-mono uppercase tracking-widest mt-1">Community Reel</div>
-//               </div>
-//               <Badge color="yellow">FEATURED</Badge>
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
 const HeroVideo = () => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -199,41 +128,6 @@ const Hero = () => {
   );
 };
 
-// const MetricsStrip = () => (
-//     <div className="bg-js-yellow border-b border-gray-800 py-16">
-//         <div className="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8">
-//             <div className="text-center border-r border-black/10 last:border-0 p-4">
-//                 <div className="flex items-center justify-center gap-2 mb-2">
-//                     <Users size={20} className="text-black/50" />
-//                     <div className="text-5xl font-black text-black tracking-tighter">5K+</div>
-//                 </div>
-//                 <div className="text-xs font-black uppercase tracking-widest text-black/60">Active Members</div>
-//             </div>
-//             <div className="text-center border-r border-black/10 last:border-0 p-4">
-//                 <div className="flex items-center justify-center gap-2 mb-2">
-//                     <Calendar size={20} className="text-black/50" />
-//                     <div className="text-5xl font-black text-black tracking-tighter">120+</div>
-//                 </div>
-//                 <div className="text-xs font-black uppercase tracking-widest text-black/60">Events Hosted</div>
-//             </div>
-//             <div className="text-center border-r border-black/10 last:border-0 p-4">
-//                 <div className="flex items-center justify-center gap-2 mb-2">
-//                     <Terminal size={20} className="text-black/50" />
-//                     <div className="text-5xl font-black text-black tracking-tighter">50+</div>
-//                 </div>
-//                 <div className="text-xs font-black uppercase tracking-widest text-black/60">Open Projects</div>
-//             </div>
-//             <div className="text-center md:border-r-0 p-4">
-//                 <div className="flex items-center justify-center gap-2 mb-2">
-//                     <Activity size={20} className="text-black/50" />
-//                     <div className="text-5xl font-black text-black tracking-tighter">7</div>
-//                 </div>
-//                 <div className="text-xs font-black uppercase tracking-widest text-black/60">Years Active</div>
-//             </div>
-//         </div>
-//     </div>
-// );
-
 const MetricsStrip = () => {
   const [counts, setCounts] = useState([0, 0, 0, 0]);
   const [hasAnimated, setHasAnimated] = useState(false);
@@ -304,6 +198,7 @@ const MetricsStrip = () => {
     </div>
   );
 };
+
 const FeaturedEvent = () => {
   const nextEvent = EVENTS.find((e) => e.status === "upcoming");
   if (!nextEvent) return null;
@@ -394,14 +289,14 @@ const FeaturedEvent = () => {
 
 const MembershipSection = () => (
   <Section className="bg-[#050505] border-b border-gray-800">
-     <div className="text-center mb-20 max-w-3xl mx-auto">
+      <div className="text-center mb-20 max-w-3xl mx-auto">
         <Heading level={2} className="mb-6">The Network</Heading>
         <p className="text-gray-400 text-lg font-light leading-relaxed">
             Choose your path. Whether you are learning, building, or hiring, we have a place for you in the ecosystem.
         </p>
-     </div>
+      </div>
 
-     <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto items-start">
+      <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto items-start">
         {/* Tier 1 */}
         <div className="bg-[#111] border border-gray-800 p-10 flex flex-col hover:border-gray-600 transition-colors h-full">
            <div className="text-gray-500 font-mono text-xs mb-4 uppercase tracking-widest">/ TIER_01</div>
@@ -415,29 +310,6 @@ const MembershipSection = () => (
            </ul>
            <Button variant="outline" className="w-full">Join Free</Button>
         </div>
-        <h3 className="text-2xl font-black text-white uppercase mb-4">
-          Explorer
-        </h3>
-        <p className="text-gray-400 text-sm mb-8 h-12">
-          For students and hobbyists starting their journey into the JavaScript
-          ecosystem.
-        </p>
-        <div className="text-5xl font-black text-white mb-8">$0</div>
-        <ul className="space-y-4 mb-10 flex-grow border-t border-gray-800 pt-8">
-          <li className="flex items-center gap-3 text-gray-400 text-sm font-bold uppercase">
-            <CheckCircle size={16} /> Monthly Meetups
-          </li>
-          <li className="flex items-center gap-3 text-gray-400 text-sm font-bold uppercase">
-            <CheckCircle size={16} /> Discord Access
-          </li>
-          <li className="flex items-center gap-3 text-gray-400 text-sm font-bold uppercase">
-            <CheckCircle size={16} /> Newsletter
-          </li>
-        </ul>
-        <Button variant="outline" className="w-full">
-          Join Free
-        </Button>
-      </div>
 
         {/* Tier 2 - Pro (Pop out) */}
         <div className="bg-white border-2 border-white p-10 flex flex-col transform md:-translate-y-6 shadow-[20px_20px_0px_0px_rgba(247,223,30,1)] relative h-full">
@@ -454,36 +326,6 @@ const MembershipSection = () => (
            </ul>
            <Button className="w-full bg-black text-white border-black hover:bg-gray-800 hover:border-gray-800">Get Started</Button>
         </div>
-        <div className="text-black font-mono text-xs mb-4 uppercase tracking-widest">
-          / TIER_02
-        </div>
-        <h3 className="text-2xl font-black text-black uppercase mb-4">
-          Professional
-        </h3>
-        <p className="text-gray-600 text-sm mb-8 h-12">
-          For engineers seeking mastery, mentorship, and career acceleration.
-        </p>
-        <div className="text-5xl font-black text-black mb-8">
-          $50<span className="text-lg align-top text-gray-500">/yr</span>
-        </div>
-        <ul className="space-y-4 mb-10 flex-grow border-t border-gray-200 pt-8">
-          <li className="flex items-center gap-3 text-black text-sm font-bold uppercase">
-            <CheckCircle size={16} /> Priority Seating
-          </li>
-          <li className="flex items-center gap-3 text-black text-sm font-bold uppercase">
-            <CheckCircle size={16} /> Exclusive Workshops
-          </li>
-          <li className="flex items-center gap-3 text-black text-sm font-bold uppercase">
-            <CheckCircle size={16} /> Mentorship Program
-          </li>
-          <li className="flex items-center gap-3 text-black text-sm font-bold uppercase">
-            <CheckCircle size={16} /> Annual Swag Pack
-          </li>
-        </ul>
-        <Button className="w-full bg-black text-white border-black hover:bg-gray-800 hover:border-gray-800">
-          Get Started
-        </Button>
-      </div>
 
         {/* Tier 3 */}
         <div className="bg-[#111] border border-gray-800 p-10 flex flex-col hover:border-gray-600 transition-colors h-full">
@@ -498,30 +340,7 @@ const MembershipSection = () => (
            </ul>
            <Button variant="outline" className="w-full">Contact Us</Button>
         </div>
-        <h3 className="text-2xl font-black text-white uppercase mb-4">
-          Partner
-        </h3>
-        <p className="text-gray-400 text-sm mb-8 h-12">
-          For organizations looking to hire talent and support the local
-          ecosystem.
-        </p>
-        <div className="text-5xl font-black text-white mb-8">CUSTOM</div>
-        <ul className="space-y-4 mb-10 flex-grow border-t border-gray-800 pt-8">
-          <li className="flex items-center gap-3 text-gray-400 text-sm font-bold uppercase">
-            <CheckCircle size={16} /> Hiring Pipeline
-          </li>
-          <li className="flex items-center gap-3 text-gray-400 text-sm font-bold uppercase">
-            <CheckCircle size={16} /> Brand Visibility
-          </li>
-          <li className="flex items-center gap-3 text-gray-400 text-sm font-bold uppercase">
-            <CheckCircle size={16} /> Speaking Slots
-          </li>
-        </ul>
-        <Button variant="outline" className="w-full">
-          Contact Us
-        </Button>
       </div>
-    </div>
   </Section>
 );
 
@@ -563,12 +382,15 @@ const Projects = () => (
                 <GitFork size={14} /> 12
               </div>
            </div>
+          </div> 
+          {/* ^^^ FIXED: Added closing div for the flex header container here */}
+          
            <h3 className="text-3xl font-black text-white mb-4 uppercase group-hover:text-js-yellow transition-colors">{project.title}</h3>
            <p className="text-gray-400 mb-8 leading-relaxed font-light grow">{project.description}</p>
            <div className="flex gap-2 border-t border-gray-800 pt-6">
-              {project.technologies.map(tech => (
+             {project.technologies.map(tech => (
                  <span key={tech} className="border border-gray-700 text-gray-400 text-[10px] px-2 py-1 uppercase font-bold tracking-widest hover:border-white hover:text-white transition-colors">{tech}</span>
-              ))}
+             ))}
            </div>
         </Card>
       ))}
